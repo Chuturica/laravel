@@ -1,3 +1,31 @@
+# Laravel From Scratch Blog Demo Project
+
+http://laravelfromscratch.com
+
+## Installation
+
+First clone this repository, install the dependencies, and setup your .env file.
+
+```
+git clone git@github.com:JeffreyWay/Laravel-From-Scratch-Blog-Project.git blog
+composer install
+cp .env.example .env
+```
+
+Then create the necessary database.
+
+```
+php artisan db
+create database blog
+```
+
+And run the initial migrations and seeders.
+
+```
+php artisan migrate --seed
+```
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
