@@ -37,6 +37,12 @@ class Post extends Model
         );
     }
 
+    public function comments()
+    {
+        # code...
+        return $this->hasMany(Comment::class);
+    }
+
     public function category()
     {
         # code...

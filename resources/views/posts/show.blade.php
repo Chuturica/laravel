@@ -52,9 +52,9 @@
                 @include ('posts._add-comment-form')
 
                 {{-- posto dodas comment makni "comment" --}}
-                {{-- @foreach ($post->comments as $comment)
+                @foreach ($post->comments as $comment)
                     <x-post-comment :comment="$comment"/>
-                @endforeach --}}
+                @endforeach
             </section>
         </article>
     </main>
