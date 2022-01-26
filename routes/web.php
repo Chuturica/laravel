@@ -24,7 +24,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('posts',[
-        'posts' => Post::latest()->get()
+        'posts' => Post::latest()->get(),
+        'categories' => Category::all()
     ]);
 });
 
@@ -38,14 +39,17 @@ Route::get('/posts/{post:slug}', function (Post $post) {
 
 Route::get('categories/{category:slug}', function(Category $category){
     return view('posts',[
-        'posts' => $category->posts
+        'posts' => $category->posts,
+        'currentCategory'=> $category,
+        'categories' => Category::all()
     ]);
 }
 );
 
 Route::get('authors/{author:username}', function(User $author){
     return view('posts',[
-        'posts' => $author->posts
+        'posts' => $author->posts,
+        'categories' => Category::all()
     ]);
 }
 );
@@ -54,6 +58,11 @@ Route::get('register', [RegisterController::class, 'create'])->middleware('guest
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
 
 Route::get('login',[SessionsController::class, 'create'])->middleware('guest');
-Route::post('sessions',[SessionsController::class, 'store'])->middleware('guest');
+Route::post('login',[SessionsController::class, 'store'])->middleware('guest');
 
 Route::post('logout',[SessionsController::class, 'destroy'])->middleware('auth');
+
+// Admin Section
+Route::middleware('can:admin')->group(function () {
+    Route::resource('admin/posts', AdminPostController::class)->except('show');
+});
